@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import UserContext from "./UserContext";
+import { useSelector } from "react-redux";
 
 function ContactDetails() {
-  const users = useContext(UserContext);
+  const users = useSelector((state) => state.users);
   return <p>Перший користувач: {users[0].name}</p>;
 }
 

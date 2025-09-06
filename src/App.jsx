@@ -1,48 +1,43 @@
 import React from 'react';
+import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './Home';
 import About from './About';
 import Contact from './Contact';
-import UserContext from './UserContext';
+
+
+import { Provider } from 'react-redux';
+import store from './store';
+
 
 function App() {
-    
-    const users = [
-        { id: 1, name: "Жека" },
-        { id: 2, name: "Андрій" },
-        { id: 3, name: "Діма" }
-    ];
+  return (
+    <Provider store={store}>
+      <Router>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Головна</Link>
+              </li>
+              <li>
+                <Link to="/about">Про нас</Link>
+              </li>
+              <li>
+                <Link to="/contact">Контакти</Link>
+              </li>
+            </ul>
+          </nav>
 
-    return (
-        <UserContext.Provider value={users}>
-        <Router>
-            <div>
-                <nav>
-                    <ul>
-                        <li>
-                            <Link to="/">Головна</Link>
-                        </li>
-                        <li>
-                            <Link to="/about">Про нас</Link>
-                        </li>
-                        <li>
-                            <Link to="/contact">Контакти</Link>
-                        </li>
-                    </ul>
-                </nav>
-
-                {/* <Switch> is replaced with <Routes> in version 6 */}
-                <Routes>
-                    <Route path="/about" element={<About />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/" element={<Home />} />
-                </Routes>
-            </div>
-        </Router>
-        </UserContext.Provider>
-    );
+          <Routes>
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </div>
+      </Router>
+    </Provider>
+  );
 }
-
-
 
 export default App;

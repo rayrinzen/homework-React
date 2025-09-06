@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import UserContext from "./UserContext";
+import { useSelector } from "react-redux";
 
 export default function About() {
-  const users = useContext(UserContext);
+  const users = useSelector((state) => state.users);
 
   return (
     <div>
