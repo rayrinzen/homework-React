@@ -1,10 +1,15 @@
 import { useSelector } from "react-redux";
 
 function ContactDetails() {
-  const users = useSelector((state) => state.users);
+  const { list, loading, error } = useSelector((state) => state.users);
+
+  if (loading) return <p>Завантаження...</p>;
+  if (error) return <p style={{ color: "red" }}>Помилка: {error}</p>;
+
   return (
     <p>
-      Перший користувач: {users.length > 0 ? users[0].name : "Немає користувачів"}
+      Перший користувач:{" "}
+      {list.length > 0 ? list[0].name : "Немає користувачів"}
     </p>
   );
 }
